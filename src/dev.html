@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="simpleVod">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Simple VOD</title>
+    <link rel="stylesheet" href="public_lib/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="public_lib/bootstrap/dist/css/bootstrap-theme.css">
+    <link rel="stylesheet" href="styles/layout.css">
+</head>
+<body>
+
+<div ng-controller="mainCtrl" class="container">
+    <div class="title-container">
+        <div class="movie-tile" ng-if="dataReady" ng-repeat="entry in entries">
+            <title title-data="entry"></title>
+        </div>
+    </div>
+
+</div>
+
+
+<script src="public_lib/angular/angular.js"></script>
+<script src="scripts/app.js"></script>
+<script src="scripts/services/userdata.js"></script>
+<script src="scripts/factories/title.js"></script>
+<script src="scripts/directives/movie_tile.js"></script>
+<script src="scripts/controllers/main_ctrl.js"></script>
+</body>
+</html>

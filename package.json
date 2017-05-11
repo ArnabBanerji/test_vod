@@ -1,0 +1,26 @@
+{
+  "name": "test_vod",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArnabBanerji/test_vod.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ArnabBanerji/test_vod/issues"
+  },
+  "homepage": "https://github.com/ArnabBanerji/test_vod#readme",
+  "dependencies": {
+    "bower": "^1.8.0",
+    "gulp": "^3.9.1",
+    "jsdom": "^10.1.0",
+    "gulp-concat": "^2.6.1"
+  }
+}
