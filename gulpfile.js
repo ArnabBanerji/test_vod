@@ -1,5 +1,5 @@
 var src = './src/';
-var pkg = src;
+var pkg = './pkg/';
 var devPage = "dev.html";
 var pkgPage = "index.html";
 var fs = require('fs');
@@ -31,6 +31,10 @@ var foldersToCopy = [
     {
         name: 'fonts',
         src: 'public_lib/bootstrap/dist/'
+    },
+    {
+        name: 'partials',
+        src: '/'
     }
 ];
 
