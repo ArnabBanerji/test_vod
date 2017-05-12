@@ -13,10 +13,7 @@
                 scope.isActive = false;
 
                 scope.$on('updateCurrentTile', function (ev, d) {
-
-
                     scope.isActive = (d === scope.index);
-                    console.log('updateCurrentTile', scope.isActive, d, scope.index);
                 });
 
                 scope.getStyle = function () {
@@ -27,6 +24,9 @@
                     return {transform: ts}
                 };
 
+                scope.videoClicked = function () {
+                    $rootScope.$broadcast('playVideo', scope.entry);
+                };
             }
         }
     }

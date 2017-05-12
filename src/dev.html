@@ -11,17 +11,21 @@
 </head>
 <body>
 
-<div ng-controller="mainCtrl" class="container">
-    <title-container ng-if="dataReady" data-entries="entries"></title-container>
-</div>
-
+<!--<div ng-controller="mainCtrl" class="container">-->
+<!--<title-container ng-if="dataReady" data-entries="entries"></title-container>-->
+<!--<video-player></video-player>-->
+<!--</div>-->
+<div ui-view></div>
+<video-player></video-player>
 
 <script src="public_lib/angular/angular.js"></script>
+<script src="public_lib/angular-ui-router/release/angular-ui-router.js"></script>
 <script src="scripts/app.js"></script>
 <script src="scripts/factories/title.js"></script>
 <script src="scripts/services/userdata.js"></script>
 <script src="scripts/directives/title_container.js"></script>
 <script src="scripts/directives/movie_tile.js"></script>
+<script src="scripts/directives/video_player.js"></script>
 <script src="scripts/controllers/main_ctrl.js"></script>
 </body>
 </html>

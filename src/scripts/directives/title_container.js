@@ -43,18 +43,17 @@
                 };
 
                 scope.nextClick = function () {
-                    $rootScope.$broadcast('updateCurrentTile', --scope.currentShowIndex);
+                    $rootScope.$broadcast('updateCurrentTile', ++scope.currentShowIndex);
                 };
 
                 scope.prevClick = function () {
-                    $rootScope.$broadcast('updateCurrentTile', ++scope.currentShowIndex);
+                    $rootScope.$broadcast('updateCurrentTile', --scope.currentShowIndex);
                 };
 
                 scope.getCarouselStyle = function () {
                     var currentDeg = $rootScope.degUnit() * scope.currentShowIndex;
                     var tz = $rootScope.getTz();
                     var ts = 'translateZ(' + (tz * -1) + 'px) rotate' + $rootScope.carouselAxis + '(' + currentDeg + 'deg)';
-                    console.log('ts = ' + ts);
                     return {transform: ts}
                 };
             }
