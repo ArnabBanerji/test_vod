@@ -1,13 +1,34 @@
 (function (module) {
-    module.directive('title', ['$scope', function ($scope) {
+    module.directive('movieTile', ['$rootScope', function ($rootScope) {
         return {
             restrict: 'E',
-            template: '<div class="movie-tile"><div class="img-wrapper"><img ng-src="{{entry.coverImage}}" alt="Cover Image"/></div></div>',
+            templateUrl: 'partials/movie_tile.html',
             replace: true,
             scope: {
-                'titleData': '@'
-            }
+                'entry': '=',
+                'index': '='
+            },
+            link: function (scope) {
 
+                scope.isActive = false;
+
+                scope.$on('updateCurrentTile', function (ev, d) {
+
+
+                    scope.isActive = (d === scope.index);
+                    console.log('updateCurrentTile', scope.isActive, d, scope.index);
+                });
+
+                scope.getStyle = function () {
+                    var idx = scope.index;
+                    var tz = $rootScope.getTz();
+                    var degUnit = $rootScope.degUnit();
+                    var ts = "rotate" + $rootScope.carouselAxis + "(" + (degUnit * idx) + 'deg) translateZ(' + tz + 'px)';
+                    return {transform: ts}
+                };
+
+            }
         }
-    }])
+    }
+    ])
 }(angular.module('simpleVod')));

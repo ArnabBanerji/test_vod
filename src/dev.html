@@ -12,19 +12,15 @@
 <body>
 
 <div ng-controller="mainCtrl" class="container">
-    <div class="title-container">
-        <div class="movie-tile" ng-if="dataReady" ng-repeat="entry in entries">
-            <title title-data="entry"></title>
-        </div>
-    </div>
-
+    <title-container ng-if="dataReady" data-entries="entries"></title-container>
 </div>
 
 
 <script src="public_lib/angular/angular.js"></script>
 <script src="scripts/app.js"></script>
-<script src="scripts/services/userdata.js"></script>
 <script src="scripts/factories/title.js"></script>
+<script src="scripts/services/userdata.js"></script>
+<script src="scripts/directives/title_container.js"></script>
 <script src="scripts/directives/movie_tile.js"></script>
 <script src="scripts/controllers/main_ctrl.js"></script>
 </body>

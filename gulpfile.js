@@ -1,5 +1,5 @@
 var src = './src/';
-var pkg = './pkg/';
+var pkg = src;
 var devPage = "dev.html";
 var pkgPage = "index.html";
 var fs = require('fs');
@@ -14,7 +14,7 @@ var tagsToSearch = [
         files: [],
         name: 'script',
         attr: 'src',
-        concatFile: 'app.js',
+        concatFile: 'scripts.js',
         postConcatTask: false
     },
     {
@@ -22,7 +22,7 @@ var tagsToSearch = [
         files: [],
         name: 'link',
         attr: 'href',
-        concatFile: 'styles.css',
+        concatFile: 'layout.css',
         additionalAttr: {rel: 'stylesheet'},
         postConcatTask: false
     }];
