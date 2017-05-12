@@ -7,14 +7,10 @@ Array.prototype.findByProp = function (key, val) {
     }
 };
 
-
 (function (module) {
     module.factory('TitleFactory', [function () {
 
-        console.log('TitleFactory');
-
         function Title(titleData) {
-            console.log('Constructor TitleFactory');
             this.title = titleData.title;
             this.description = titleData.description;
             this.type = titleData.type;
@@ -35,4 +31,4 @@ Array.prototype.findByProp = function (key, val) {
             }
         };
     }]);
-}(angular.module('simpleVod')));
+}(angular.module('VOD')));
