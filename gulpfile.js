@@ -39,11 +39,12 @@ var foldersToCopy = [
     }
 ];
 
+gulp.src('./pkg/**/*', {read: false})
+    .pipe(clean());
+
+
 gulp.task('default', function () {
     // place code for your default task here
-
-    gulp.src('./pkg/', {read: false})
-        .pipe(clean());
 
 
     JSDOM.fromFile(src + devPage).then(function (d) {
@@ -67,18 +68,20 @@ gulp.task('default', function () {
                 tagFiles.push(file);
                 console.log('%s#%d=%s', tagName, j, file);
             }
-            var newTag = dom.window.document.createElement(tagName);
-            newTag.setAttribute(tag.attr, tag.concatFile);
 
-            if (tag.additionalAttr) {
-                for (var k in tag.additionalAttr) {
-                    newTag.setAttribute(k, tag.additionalAttr[k]);
+            if (tagFiles.length > 0) {
+                var newTag = dom.window.document.createElement(tagName);
+                newTag.setAttribute(tag.attr, tag.concatFile);
+
+                if (tag.additionalAttr) {
+                    for (var k in tag.additionalAttr) {
+                        newTag.setAttribute(k, tag.additionalAttr[k]);
+                    }
                 }
 
+                var appendTo = dom.window.document.querySelectorAll(tag.appendTo)[0];
+                appendTo.appendChild(newTag);
             }
-
-            var appendTo = dom.window.document.querySelectorAll(tag.appendTo)[0];
-            appendTo.appendChild(newTag);
 
             var stream = gulp.src(tagFiles)
                 .pipe(concat(tag.concatFile));
@@ -91,8 +94,13 @@ gulp.task('default', function () {
 
         }
 
-        fs.writeFile(pkg + pkgPage, dom.window.document.documentElement.outerHTML, function (error) {
-            if (!error) {
+        var destIndexFile = pkg + pkgPage;
+        console.log('Index File = %s', destIndexFile);
+
+        fs.writeFile(destIndexFile, dom.window.document.documentElement.outerHTML, function (error) {
+            if (error) {
+                console.log('ERROR in index page creation.');
+            } else {
                 console.log('Package HTML ready');
             }
         });

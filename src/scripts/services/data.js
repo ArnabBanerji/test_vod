@@ -1,37 +1,60 @@
 (function (module) {
-    function dataService($http, $log) {
+    function dataService($rootScope, TitleFactory, $http, $log, $q) {
 
-        console.log('dataService run');
         var self = this;
+        var titleDataListUrl = 'https://demo2697834.mockable.io/movies';
+        var userDataUrl = 'https://4pa8myas7e.execute-api.us-east-1.amazonaws.com/prod/user';
 
-        var url = 'https://demo2697834.mockable.io/movies';
         var userId = 'a0';
-
-        this.data = [];
-
-
-        var req = $http.get(url);
-
-        req.then(function (data) {
-            $log.info('Data Received');
-            self.data = data.data;
-        }, function () {
-            $log.error('Failed to load data.', 'dataService');
-            throw new Error();
-        });
-
-        this.getDataPromise = function () {
-            return req;
+        this.titleData = false;
+        this.userId = userId;
+        this.userData = {
+            userId: userId,
+            watched: []
         };
 
-        this.getMoviesData = function () {
-            return this.data;
-        }
+        this.markWatched = function (id) {
+            if (self.userData.watched.indexOf(id) === -1) {
+                self.userData.watched.push(id);
+                $http.post(userDataUrl, {'userId': userId, watched: id});
+            }
+        };
+
+        this.isWatched = function (id) {
+            return (self.userData.watched.indexOf(id) !== -1);
+        };
+
+
+        this.getTitleListData = function () {
+            var deferred = $q.defer();
+            $http.get(titleDataListUrl).then(function (data) {
+                self.titleData = data.data.entries.map(TitleFactory.getTitleObj);
+                deferred.resolve(self.titleData);
+            }, function () {
+                deferred.reject('Title list data failed to load.');
+            });
+            return deferred.promise;
+        };
+
+        this.getUserData = function () {
+            var deferred = $q.defer();
+            $http.get(userDataUrl).then(function (data) {
+                self.userData = data.data;
+                deferred.resolve(self.userData);
+            }, function () {
+                deferred.reject('User data failed to load.');
+            });
+            return deferred.promise;
+        };
+
     }
 
     module.service('dataService', [
+        '$rootScope',
+        'TitleFactory',
         '$http',
         '$log',
+        '$q',
         dataService
     ]);
 }(angular.module('VOD')));

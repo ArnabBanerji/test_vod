@@ -1,0 +1,14 @@
+.title-tile {
+    background-color: rgba(0, 0, 0, 0.5);
+    margin: 5px;
+    overflow: hidden;
+    height: 400px;
+    width: 200px;
+    border-radius: 5px;
+    float: left;
+}
+
+.img-wrapper img {
+    width: 200px;
+    height: auto;
+}

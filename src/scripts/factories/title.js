@@ -18,7 +18,7 @@ Array.prototype.findByProp = function (key, val) {
             this.availableDate = titleData.availableDate;
             this.id = titleData.id;
             this.language = titleData.metadata.findByProp('name', 'language').value;
-            this.coverImage = titleData.images.findByProp('type', 'cover').url;
+            this.coverImageUrl = titleData.images.findByProp('type', 'cover').url;
             this.videoUrl = titleData.contents[0].url;
             this.cateogies = titleData.categories.map(function (cat) {
                 return cat.title
