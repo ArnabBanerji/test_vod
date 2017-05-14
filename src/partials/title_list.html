@@ -1,20 +1,15 @@
 <div class="title-list">
     <div>titleList count:: {{titleList.length}}</div>
     <div class="title-tile-wrapper">
-
-        <div class="title-tile" ng-repeat="title in titleList">
-            <div>
-                <span>Watched :: {{isWatched(title.id)}}</span>
-                <br/>
-                <button ng-click="markWatched(title.id)">Mark as watched</button>
-            </div>
+        <button class="btn btn-link  title-tile" ng-repeat="title in titleList">
             <div class="img-wrapper">
-                <img ng-src="{{title.coverImageUrl}}" ng-attr-alt="Cover image for {{title.title}}">
-                <button ng-click="titleClicked($index)">Title Clicked</button>
+                <img class="img-responsive" ng-src="{{title.coverImageUrl}}"
+                     ng-attr-alt="Cover image for {{title.title}}">
             </div>
             <div>
                 <strong>{{title.title}}</strong>
+                <span ng-class="[{'glyphicon-ok':isWatched(title.id)},'glyphicon','ok-icon']"></span>
             </div>
-        </div>
+        </button>
     </div>
 </div>

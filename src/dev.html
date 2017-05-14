@@ -4,20 +4,25 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="public_lib/angular/angular-csp.css">
+    <!--<link rel="stylesheet" href="public_lib/angular/angular-csp.css">-->
     <link rel="stylesheet" href="public_lib/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="public_lib/bootstrap/dist/css/bootstrap-theme.css">
     <link rel="stylesheet" href="styles/layout.css">
     <title>VOD</title>
 </head>
 <body>
-<div>
-    <a ui-sref="home()">Home</a>
-    <a ui-sref="history()">History</a>
+<header ng-include="'partials/nav.html'"></header>
+
+<div class="container-fluid">
+    <div class="row" ui-view>
+    </div>
 </div>
 
-<div ui-view></div>
+<footer ng-include="'partials/footer.html'"></footer>
 
+<script src="public_lib/jquery/dist/jquery.js"></script>
+<script src="public_lib/bootstrap/dist/js/bootstrap.js"></script>
+<script src="public_lib/jquery/dist/jquery.js"></script>
 <script src="public_lib/angular/angular.js"></script>
 <script src="public_lib/angular-ui-router/release/angular-ui-router.js"></script>
 <script src="scripts/app.js"></script>

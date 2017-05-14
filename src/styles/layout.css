@@ -1,14 +1,40 @@
 .title-tile {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.2);
     margin: 5px;
     overflow: hidden;
-    height: 400px;
+    height: 340px;
     width: 200px;
     border-radius: 5px;
     float: left;
+    text-align: left;
+}
+
+.title-tile:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 2px 2px 2px 2px rgba(173, 171, 173, 0.62);
+    -moz-box-shadow: 2px 2px 2px 2px rgba(173, 171, 173, 0.62);
+    box-shadow: 2px 2px 2px 2px rgba(173, 171, 173, 0.62);
+}
+
+.title-tile {
+    background-color: rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 5px 5px 5px 2px rgba(173, 171, 173, 0.62);
+    -moz-box-shadow: 5px 5px 5px 2px rgba(173, 171, 173, 0.62);
+    box-shadow: 5px 5px 5px 2px rgba(173, 171, 173, 0.62);
+}
+
+.img-wrapper {
+    position: relative;
+    padding: 10px;
+    text-align: center;
 }
 
 .img-wrapper img {
     width: 200px;
-    height: auto;
+    height: 266px;
+    border-radius: 5px;
+}
+
+.title-tile-wrapper {
+    position: relative;
 }

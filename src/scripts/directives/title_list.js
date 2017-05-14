@@ -12,6 +12,7 @@
             return {
                 restrict: 'E',
                 templateUrl: 'partials/title_list.html',
+                replace: true,
                 link: function (scope) {
 
                     scope.isWatched = function (id) {
