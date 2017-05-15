@@ -4,6 +4,7 @@
         function ($rootScope) {
             return {
                 restrict: 'E',
+                replace: true,
                 templateUrl: 'partials/video_player.html',
                 link: function (scope, elem) {
                     var videoElem = elem[0].querySelector('#player');
