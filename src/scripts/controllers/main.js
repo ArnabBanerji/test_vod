@@ -1,19 +1,9 @@
 (function (module) {
-    module.controller('main', ['$scope', 'TitleFactory', 'dataService', function ($scope, TitleFactory, dataService) {
+    module.controller('main', ['$scope', 'userData', 'titleData', function ($scope, userData, titleData) {
 
-        $scope.titleList = [];
-        $scope.userData = {'watched': []};
+        $scope.titleList = titleData;
+        $scope.userData = userData;
 
-
-        dataService.getTitleListData().then(function (data) {
-            console.log('Title List Received');
-            $scope.titleList = data;
-        });
-
-        dataService.getUserData().then(function (data) {
-            console.log('User Data Received');
-            $scope.userData = data;
-        });
 
     }]);
 }(angular.module('VOD')));

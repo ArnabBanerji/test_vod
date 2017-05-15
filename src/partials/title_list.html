@@ -1,14 +1,16 @@
 <div class="title-list">
     <div>titleList count:: {{titleList.length}}</div>
     <div class="title-tile-wrapper">
-        <button class="btn btn-link  title-tile" ng-repeat="title in titleList">
+        <button class="btn btn-link  title-tile" ng-repeat="title in titleList" ng-click="titleClicked($index)">
             <div class="img-wrapper">
                 <img class="img-responsive" ng-src="{{title.coverImageUrl}}"
                      ng-attr-alt="Cover image for {{title.title}}">
             </div>
             <div>
-                <strong>{{title.title}}</strong>
-                <span ng-class="[{'glyphicon-ok':isWatched(title.id)},'glyphicon','ok-icon']"></span>
+                <span>
+                    <strong>{{title.title}}</strong>
+                    <span ng-class="[{'glyphicon-ok':isWatched(title.id)},'glyphicon','ok-icon']"></span>
+                </span>
             </div>
         </button>
     </div>

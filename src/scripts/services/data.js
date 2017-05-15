@@ -1,6 +1,6 @@
 (function (module) {
-    function dataService($rootScope, TitleFactory, $http, $log, $q) {
-
+    function dataService(TitleFactory, $http, $q) {
+        console.log('DataService init');
         var self = this;
         var titleDataListUrl = 'https://demo2697834.mockable.io/movies';
         var userDataUrl = 'https://4pa8myas7e.execute-api.us-east-1.amazonaws.com/prod/user';
@@ -13,19 +13,19 @@
             watched: []
         };
 
-        this.markWatched = function (id) {
+        this._markWatched = function (id) {
             if (self.userData.watched.indexOf(id) === -1) {
                 self.userData.watched.push(id);
                 $http.post(userDataUrl, {'userId': userId, watched: id});
             }
         };
 
-        this.isWatched = function (id) {
+        this._isWatched = function (id) {
             return (self.userData.watched.indexOf(id) !== -1);
         };
 
 
-        this.getTitleListData = function () {
+        this._getTitleListData = function () {
             var deferred = $q.defer();
             $http.get(titleDataListUrl).then(function (data) {
                 self.titleData = data.data.entries.map(TitleFactory.getTitleObj);
@@ -36,7 +36,7 @@
             return deferred.promise;
         };
 
-        this.getUserData = function () {
+        this._getUserData = function () {
             var deferred = $q.defer();
             $http.get(userDataUrl).then(function (data) {
                 self.userData = data.data;
@@ -47,14 +47,33 @@
             return deferred.promise;
         };
 
+        return {
+            userId: userId,
+            markWatched: this._markWatched,
+            isWatched: this._isWatched,
+            getTitleListData: this._getTitleListData,
+            getUserData: this._getUserData
+        }
+
     }
 
-    module.service('dataService', [
-        '$rootScope',
-        'TitleFactory',
-        '$http',
-        '$log',
-        '$q',
-        dataService
-    ]);
+
+    // module.service('dataService', [
+    //     'TitleFactory',
+    //     '$http',
+    //     '$q',
+    //     dataService
+    // ]);
+
+    module.provider('dataService', function () {
+
+        this.$get = [
+            'TitleFactory',
+            '$http',
+            '$q',
+            dataService
+        ];
+    });
+
+
 }(angular.module('VOD')));
