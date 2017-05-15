@@ -29,8 +29,11 @@
                             keyStr = 'Enter';
                     }
                     if (keyStr.length > 0) {
+                        ev.preventDefault();
+                        console.log('Key Pressed %s', keyStr);
                         $rootScope.$broadcast('keyPressed', keyStr);
                     }
+
 
                 })
             }
