@@ -1,22 +1,17 @@
 (function (module) {
-    module.controller('player', ['$scope', 'dataService', '$stateParams', function ($scope, dataService, $stateParams) {
+    module.controller('player', ['$scope', 'dataService', '$stateParams', 'dataService', 'titleData', 'userData', function ($scope, dataService, $stateParams, dataService, titleData, userData) {
 
+
+        $scope.titleList = titleData;
+        $scope.userData = userData;
         $scope.videoId = $stateParams.videoId;
         $scope.userId = $stateParams.userId;
-
         $scope.videoSrc = '';
+        $scope.videoSrc = $scope.titleList.findByProp('id', $scope.videoId).videoUrl;
 
-        dataService.getTitleListData().then(function (data) {
-            console.log('Title List Received');
-            $scope.titleList = data;
-            $scope.videoSrc = $scope.titleList.findByProp('id', $scope.videoId).videoUrl;
-
-        });
-
-
-        dataService.getUserData().then(function (data) {
-            console.log('User Data Received');
-            $scope.userData = data;
+        $scope.$on('videoEnded', function () {
+            console.log('Player Ctrl Video Ended');
+            dataService.markWatched($scope.videoId);
         });
     }]);
 }(angular.module('VOD')));

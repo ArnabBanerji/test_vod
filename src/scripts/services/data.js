@@ -16,7 +16,11 @@
         this._markWatched = function (id) {
             if (self.userData.watched.indexOf(id) === -1) {
                 self.userData.watched.push(id);
-                $http.post(userDataUrl, {'userId': userId, watched: id});
+                $http.post(userDataUrl, {'userId': userId, watched: id}).then(function (res) {
+                    console.log('Post success');
+                }, function () {
+                    console.log('Post FAILED :-(')
+                });
             }
         };
 
@@ -54,16 +58,7 @@
             getTitleListData: this._getTitleListData,
             getUserData: this._getUserData
         }
-
     }
-
-
-    // module.service('dataService', [
-    //     'TitleFactory',
-    //     '$http',
-    //     '$q',
-    //     dataService
-    // ]);
 
     module.provider('dataService', function () {
 

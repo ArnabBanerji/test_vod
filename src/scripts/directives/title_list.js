@@ -15,12 +15,23 @@
                 replace: true,
                 link: function (scope) {
 
-                    scope.isWatched = function (id) {
-                        return dataService.isWatched(id);
+                    scope.getWrapperStyle = function () {
+                        var count = scope.titleList.length;
+                        var unitW = 250;
+                        var unitH = 350;
+
+                        return {
+                            height: unitH,
+                            width: (unitW * count) + 'px'
+                        }
                     };
 
-                    scope.markWatched = function (id) {
-                        dataService.markWatched(id)
+                    scope.inFocus = function (idx) {
+                        console.log('InFocus %d', idx);
+                    };
+
+                    scope.isWatched = function (id) {
+                        return dataService.isWatched(id);
                     };
 
                     scope.titleClicked = function (index) {
