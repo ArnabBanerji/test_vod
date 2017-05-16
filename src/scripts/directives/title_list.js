@@ -19,7 +19,7 @@
 
                     scope.getWrapperStyle = function () {
                         var count = scope.titleList.length;
-                        var unitW = 250;
+                        var unitW = 210;
                         var unitH = 350;
 
                         return {
@@ -28,6 +28,9 @@
                         }
                     };
 
+                    scope.getTitleList = function () {
+                        return scope.titleList;
+                    };
 
                     scope.isWatched = function (id) {
                         return dataService.isWatched(id);

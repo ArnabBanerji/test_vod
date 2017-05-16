@@ -1,11 +1,25 @@
-<div class="video-wrapper">
+<div class="video-wrapper" ng-show="showVideoWrapper">
     <video id="player">
         <source ng-src="{{videoSrc}}" type="video/mp4">
     </video>
-    <div class="video-controls">
-        <button>Go Back</button>
-        <button>Play</button>
-        <button>Full Screen</button>
-        <button>Progress</button>
+    <div class="video-controls" ng-class="{'videoPlaying':videoPlaying}">
+        <button class="btn btn-xs btn-back" ng-hide="videoPlaying">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </button>
+        <button class="btn btn-xs btn-play-pause" ng-click="playPauseClicked()">
+            <span class="glyphicon" ng-class="{'glyphicon-play':!videoPlaying,'glyphicon-pause':videoPlaying}"></span>
+        </button>
+        <!--<button class="btn btn-xs btn-fullscreen" ng-class="goFullScreen()">-->
+        <!--<span class="glyphicon glyphicon-fullscreen"></span>-->
+        <!--</button>-->
+        <button class="btn btn-xs btn-close" ng-click="(showVideoWrapper=false)">
+            <span class="glyphicon glyphicon glyphicon-remove"></span>
+        </button>
+        <div class="video-time">{{videoTime}}</div>
+        <button class="video-progress-bar" ng-click="pbClick($event)" ng-mousemove="pbMouseMove($event)"
+                ng-mouseleave="pbMouseOut()"
+                ng-style="pbStyle">
+            <div ng-style="{'left':toolTipPos + 'px'}" ng-show="showToolTip" class="time-tooltip">{{pbVal}}</div>
+        </button>
     </div>
 </div>

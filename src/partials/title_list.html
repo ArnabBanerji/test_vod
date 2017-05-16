@@ -1,9 +1,10 @@
 <div class="title-list" key-press>
     <div>titleList count:: {{titleList.length}}</div>
     <div>currentFocusedTitle :: {{currentFocusedTitle}}</div>
+    <div>Window [w,h] = [{{$root.windowW}}, {{$root.windowH}}]</div>
     <div class="title-tile-wrapper" ng-style="getWrapperStyle()">
         <button focus-tracker="(currentFocusedTitle===$index)" class="btn btn-link title-tile"
-                ng-repeat="title in titleList" ng-blur="titleBlur($index)" ng-focus="titleFocus($index)"
+                ng-repeat="title in getTitleList()" ng-blur="titleBlur($index)" ng-focus="titleFocus($index)"
                 ng-click="titleClicked($index)">
             <div class="img-wrapper">
                 <img class="img-responsive" ng-src="{{title.coverImageUrl}}"
