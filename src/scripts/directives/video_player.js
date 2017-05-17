@@ -1,7 +1,8 @@
 (function (module) {
     module.directive('videoPlayer', [
         '$rootScope',
-        function ($rootScope) {
+        '$state',
+        function ($rootScope, $state) {
             return {
                 restrict: 'E',
                 replace: true,
@@ -27,10 +28,12 @@
                         videoElem.pause();
                         videoElem.src = '';
                         elem.hide();
+                        $state.go('home', {
+                            videoId: ''
+                        });
                     };
 
                     scope.videoEnded = function () {
-                        console.log('VideoPlayer :: videoEnded');
                         $rootScope.$broadcast('videoEnded');
                     };
                     scope.playStarted = function () {

@@ -1,8 +1,4 @@
 <div class="title-list">
-
-    <div>{{$root.windowW}}</div>
-    <div>currentViewOffset = {{currentViewOffset}}</div>
-    <div>currentViewCount = {{currentViewCount}}</div>
     <div class="title-tile-wrapper">
         <button ng-disabled="currentViewOffset===0"
                 class="btn btn-link show-prev" ng-click="showPrev()">
@@ -11,6 +7,8 @@
         <button class="btn btn-link title-tile animate-show-hide"
                 ng-show="showItem($index)"
                 ng-repeat="title in getTitleList()"
+                ng-mouseover="mouseOverIndex=$index"
+                ng-mouseleave="mouseOverIndex=-1"
                 ng-click="titleClicked($index)">
             <div class="img-wrapper">
                 <img class="img-responsive" ng-src="{{title.coverImageUrl}}"
@@ -26,7 +24,9 @@
             <span class="glyphicon glyphicon-chevron-right"></span>
         </button>
     </div>
-    <div class="description-box"></div>
+    <div class="description-box">
+        <em>{{getTitleList()[mouseOverIndex].description}}</em>
+    </div>
     <div class="player">
         <video-player ng-if="(videoSrc.length>0)"></video-player>
     </div>

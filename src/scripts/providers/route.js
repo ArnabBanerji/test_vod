@@ -31,20 +31,6 @@
             }
         });
 
-        $stateProvider.state('player', {
-            url: '/player/:userId/:videoId',
-            templateUrl: 'partials/player.html',
-            controller: 'player',
-            resolve: {
-                userData: ['dataService', function (dataService) {
-                    return dataService.getUserData();
-                }],
-                titleData: ['dataService', function (dataService) {
-                    return dataService.getTitleListData()
-                }]
-            }
-        });
-
         $urlRouterProvider.otherwise('/home/');
 
     }]);

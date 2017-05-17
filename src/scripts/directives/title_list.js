@@ -15,6 +15,7 @@
                 replace: true,
                 link: function (scope) {
 
+                    scope.mouseOverIndex = -1;
                     scope.currentViewOffset = 0;
                     scope.currentViewCount = 3;
 
@@ -67,6 +68,7 @@
                             videoId: titleElem.id
                         });
                     };
+
 
                     scope.updateViewCount();
                 }
