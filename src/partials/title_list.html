@@ -1,21 +1,33 @@
-<div class="title-list" key-press>
-    <div>titleList count:: {{titleList.length}}</div>
-    <div>currentFocusedTitle :: {{currentFocusedTitle}}</div>
-    <div>Window [w,h] = [{{$root.windowW}}, {{$root.windowH}}]</div>
-    <div class="title-tile-wrapper" ng-style="getWrapperStyle()">
-        <button focus-tracker="(currentFocusedTitle===$index)" class="btn btn-link title-tile"
-                ng-repeat="title in getTitleList()" ng-blur="titleBlur($index)" ng-focus="titleFocus($index)"
+<div class="title-list">
+
+    <div>{{$root.windowW}}</div>
+    <div>currentViewOffset = {{currentViewOffset}}</div>
+    <div>currentViewCount = {{currentViewCount}}</div>
+    <div class="title-tile-wrapper">
+        <button ng-disabled="currentViewOffset===0"
+                class="btn btn-link show-prev" ng-click="showPrev()">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </button>
+        <button class="btn btn-link title-tile animate-show-hide"
+                ng-show="showItem($index)"
+                ng-repeat="title in getTitleList()"
                 ng-click="titleClicked($index)">
             <div class="img-wrapper">
                 <img class="img-responsive" ng-src="{{title.coverImageUrl}}"
                      ng-attr-alt="Cover image for {{title.title}}">
             </div>
+            <div>#{{$index+1}}</div>
             <div>
-                <span>
-                    <strong>{{title.title}}</strong>
-                    <span ng-class="[{'glyphicon-ok':isWatched(title.id)},'glyphicon','ok-icon']"></span>
-                </span>
+                <span class="h4">{{title.title}}</span>
             </div>
         </button>
+        <button ng-disabled="!(((currentViewOffset*currentViewCount)+currentViewCount)<getTitleListCount())"
+                class="btn btn-link show-next" ng-click="showNext()">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </button>
+    </div>
+    <div class="description-box"></div>
+    <div class="player">
+        <video-player ng-if="(videoSrc.length>0)"></video-player>
     </div>
 </div>

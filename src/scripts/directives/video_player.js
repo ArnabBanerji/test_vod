@@ -23,6 +23,11 @@
                         }
                     };
 
+                    scope.videoClosed = function () {
+                        videoElem.pause();
+                        videoElem.src = '';
+                        elem.hide();
+                    };
 
                     scope.videoEnded = function () {
                         console.log('VideoPlayer :: videoEnded');
@@ -46,7 +51,6 @@
                     };
 
                     scope.getPbStyle = function () {
-                        console.log('scope.getPbW() = ' + scope.getPbW());
                         return {
                             width: scope.getPbW() + 'px',
                             left: pbMargins + 'px'

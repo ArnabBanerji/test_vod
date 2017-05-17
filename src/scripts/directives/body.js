@@ -9,14 +9,12 @@
                     $rootScope.windowW = $window.innerWidth;
                     $rootScope.windowH = $window.innerHeight;
                     $rootScope.$broadcast('windowResize');
-
                     if (!$rootScope.$$phase) {
                         $rootScope.$apply();
                     }
                 }
 
                 angular.element($window).bind('resize', resizeHandler);
-
                 resizeHandler();
 
 

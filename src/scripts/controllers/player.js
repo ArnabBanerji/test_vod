@@ -6,11 +6,10 @@
         $scope.userData = userData;
         $scope.videoId = $stateParams.videoId;
         $scope.userId = $stateParams.userId;
-        $scope.videoSrc = '';
+
         $scope.videoSrc = $scope.titleList.findByProp('id', $scope.videoId).videoUrl;
 
         $scope.$on('videoEnded', function () {
-            console.log('Player Ctrl Video Ended');
             dataService.markWatched($scope.videoId);
         });
     }]);

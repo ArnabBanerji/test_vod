@@ -15,21 +15,46 @@
                 replace: true,
                 link: function (scope) {
 
-                    scope.currentFocusedTitle = -1;
+                    scope.currentViewOffset = 0;
+                    scope.currentViewCount = 3;
 
-                    scope.getWrapperStyle = function () {
-                        var count = scope.titleList.length;
-                        var unitW = 210;
-                        var unitH = 350;
+                    scope.updateViewCount = function () {
+                        scope.currentViewCount = Math.floor(($rootScope.windowW - 110) / 210);
+                        scope.currentViewCount = (scope.currentViewCount > 0) ? scope.currentViewCount : 1;
 
-                        return {
-                            height: unitH,
-                            width: (unitW * count) + 'px'
+                        if (!scope.$$phase) {
+                            scope.$apply();
                         }
+                    };
+                    scope.$on('windowResize', scope.updateViewCount);
+
+
+                    scope.getStartIndex = function () {
+                        return (scope.currentViewOffset * scope.currentViewCount);
+                    };
+
+                    scope.getEndIndex = function () {
+                        return scope.getStartIndex() + scope.currentViewCount;
+                    };
+
+                    scope.showItem = function (index) {
+                        return (index >= scope.getStartIndex() && index < scope.getEndIndex());
                     };
 
                     scope.getTitleList = function () {
                         return scope.titleList;
+                    };
+
+                    scope.getTitleListCount = function () {
+                        return scope.titleList.length;
+                    };
+
+                    scope.showNext = function () {
+                        scope.currentViewOffset += 1;
+                    };
+
+                    scope.showPrev = function () {
+                        scope.currentViewOffset -= 1;
                     };
 
                     scope.isWatched = function (id) {
@@ -38,52 +63,12 @@
 
                     scope.titleClicked = function (index) {
                         var titleElem = scope.titleList[index];
-                        $state.go('player', {
-                            userId: dataService.userId,
+                        $state.go('home', {
                             videoId: titleElem.id
                         });
                     };
 
-
-                    scope.titleFocus = function (index) {
-                        scope.currentFocusedTitle = index;
-                        console.log('InFocus %d', index);
-                    };
-                    scope.titleBlur = function (index) {
-                        scope.currentFocusedTitle = -1;
-                        console.log('titleBlur %d', index);
-                    };
-
-
-                    scope.$on('keyPressed', function (ev, data) {
-
-                        console.log('Title List key press listener', data);
-
-                        if (scope.currentFocusedTitle === -1) {
-                            //No focus on titles yet
-                            return;
-                        }
-
-                        switch (data) {
-                            case 'ArrowLeft':
-                                if (scope.currentFocusedTitle > 0) {
-                                    scope.currentFocusedTitle--;
-                                }
-                                break;
-                            case 'ArrowUp':
-                                break;
-                            case 'ArrowRight':
-                                if (scope.currentFocusedTitle < scope.titleList.length) {
-                                    scope.currentFocusedTitle++;
-                                }
-                                break;
-                            case 'ArrowDown':
-                                break;
-                            case 'Enter':
-                                scope.titleClicked(scope.currentFocusedTitle);
-                                break;
-                        }
-                    });
+                    scope.updateViewCount();
                 }
             }
 

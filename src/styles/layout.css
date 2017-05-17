@@ -5,8 +5,8 @@
     height: 340px;
     width: 200px;
     border-radius: 5px;
-    float: left;
-    text-align: left;
+    /* float: left; */
+    text-align: center;
 }
 
 .title-tile:hover {
@@ -37,6 +37,10 @@
 
 .title-tile-wrapper {
     position: relative;
+    height: 350px;
+    width: 100%;
+    padding: 0 50px 0 50px;
+    text-align: center;
 }
 
 .video-wrapper {
@@ -78,7 +82,13 @@ video#player {
     top: 50%;
     left: 50%;
     border-radius: 50%;
-    padding-left: 7px;
+    padding-left: 13px;
+    height: 50px;
+    width: 50px;
+    font-size: 30px;
+    line-height: 50px;
+    background-color: rgba(100, 100, 100, 0.8);
+    color: rgba(200, 50, 100, 0.65);
 }
 
 .video-controls.videoPlaying button.btn.btn-xs.btn-play-pause {
@@ -148,4 +158,49 @@ button.btn-back {
 .videoPlaying .video-time {
     display: block;
     bottom: 19px;
+}
+
+button.btn.btn-link.show-next {
+    position: absolute;
+    top: 0;
+    left: auto;
+    height: 100%;
+    background-color: lightgray;
+    right: 10px;
+    border-radius: 5px;
+}
+
+button.btn.btn-link.show-prev {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    height: 100%;
+    background-color: lightgray;
+    border-radius: 5px;
+}
+
+.animate-show-hide.ng-hide {
+    position: absolute;
+    opacity: 0;
+}
+
+.animate-show-hide.ng-hide-remove {
+    transition: all linear 0.5s;
+}
+
+.title-tile {
+    border: 1px solid black;
+    opacity: 1;
+    padding: 10px;
+}
+
+button.btn.btn-xs.btn-close {
+    position: absolute;
+    right: 100px;
+    top: 100px;
+    display: none;
+}
+
+.video-controls:hover button.btn.btn-close {
+    display: block;
 }

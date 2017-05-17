@@ -4,7 +4,7 @@
         console.log('App.config');
 
         $stateProvider.state('home', {
-            url: '/home',
+            url: '/home/:videoId',
             templateUrl: 'partials/main.html',
             controller: 'main',
             resolve: {
@@ -18,7 +18,7 @@
         });
 
         $stateProvider.state('history', {
-            url: '/history',
+            url: '/history:videoId',
             templateUrl: 'partials/history.html',
             controller: 'history',
             resolve: {
@@ -45,7 +45,7 @@
             }
         });
 
-        $urlRouterProvider.otherwise('/home');
+        $urlRouterProvider.otherwise('/home/');
 
     }]);
 }(angular.module('VOD')));

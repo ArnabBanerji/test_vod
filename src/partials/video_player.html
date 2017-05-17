@@ -3,16 +3,16 @@
         <source ng-src="{{videoSrc}}" type="video/mp4">
     </video>
     <div class="video-controls" ng-class="{'videoPlaying':videoPlaying}">
-        <button class="btn btn-xs btn-back" ng-hide="videoPlaying">
-            <span class="glyphicon glyphicon-chevron-left"></span>
-        </button>
+        <!--<button class="btn btn-xs btn-back" ng-hide="videoPlaying">-->
+        <!--<span class="glyphicon glyphicon-chevron-left"></span>-->
+        <!--</button>-->
         <button class="btn btn-xs btn-play-pause" ng-click="playPauseClicked()">
             <span class="glyphicon" ng-class="{'glyphicon-play':!videoPlaying,'glyphicon-pause':videoPlaying}"></span>
         </button>
         <!--<button class="btn btn-xs btn-fullscreen" ng-class="goFullScreen()">-->
         <!--<span class="glyphicon glyphicon-fullscreen"></span>-->
         <!--</button>-->
-        <button class="btn btn-xs btn-close" ng-click="(showVideoWrapper=false)">
+        <button class="btn btn-xs btn-close" ng-click="videoClosed()">
             <span class="glyphicon glyphicon glyphicon-remove"></span>
         </button>
         <div class="video-time">{{videoTime}}</div>

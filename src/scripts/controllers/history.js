@@ -11,5 +11,10 @@
                 $scope.titleList.push(obj);
             }
         }
+
+        $scope.$on('videoEnded', function () {
+            dataService.markWatched($scope.videoId);
+        });
+
     }]);
 }(angular.module('VOD')));
